@@ -13,6 +13,7 @@
           "Microsoft.AspNetCore.Cors": "2.2.0",
           "Microsoft.EntityFrameworkCore.Design": "8.0.10",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.10",
+          "SharpHash": "1.2.0",
           "Swashbuckle.AspNetCore": "6.6.2"
         },
         "runtime": {
@@ -579,6 +580,17 @@
           }
         }
       },
+      "SharpHash/1.2.0": {
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "runtime": {
+          "lib/netcoreapp2.0/SharpHash.dll": {
+            "assemblyVersion": "1.2.0.0",
+            "fileVersion": "1.2.0.0"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.6.2": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.5",
@@ -1025,6 +1037,13 @@
       "sha512": "sha512-gFPl9Dmxih7Yi4tZ3bITzZFzbxFMBx04gqTqcjoL2r5VEW+O2TA5UVw/wm/XW26NAJ7sg59Je0+9QrwiZt6MPQ==",
       "path": "npgsql.entityframeworkcore.postgresql/8.0.10",
       "hashPath": "npgsql.entityframeworkcore.postgresql.8.0.10.nupkg.sha512"
+    },
+    "SharpHash/1.2.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-TJ/zms5HLotnFPnEnSAeA7VEyTuBlG0GANpN4nOR1LfDjCcdMPgOJJK8ZAF22dEfg8qhKMsN16CQgrsIdFhZew==",
+      "path": "sharphash/1.2.0",
+      "hashPath": "sharphash.1.2.0.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.6.2": {
       "type": "package",

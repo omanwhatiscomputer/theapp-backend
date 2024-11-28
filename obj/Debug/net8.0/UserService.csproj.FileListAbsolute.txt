@@ -119,3 +119,4 @@
 /home/khubayeeb_k/MEGAsync/iLearning/the_app/src/UserService/obj/Debug/net8.0/UserService.pdb
 /home/khubayeeb_k/MEGAsync/iLearning/the_app/src/UserService/obj/Debug/net8.0/UserService.genruntimeconfig.cache
 /home/khubayeeb_k/MEGAsync/iLearning/the_app/src/UserService/obj/Debug/net8.0/ref/UserService.dll
+/home/khubayeeb_k/MEGAsync/iLearning/the_app/src/UserService/bin/Debug/net8.0/SharpHash.dll

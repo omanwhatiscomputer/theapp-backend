@@ -1,6 +1,7 @@
 using System;
 using System.Security.Cryptography;
 using System.Text;
+using SharpHash.Base;
 
 
 namespace UserService.RequestHelpers;
@@ -12,21 +13,53 @@ public class PasswordHelper
 
     private static readonly int Iterations = 3500;
     private static readonly int KeySize = 256;
+    // public static string HashPassword(string password, out byte[] salt)
+    // {
+    //     salt = RandomNumberGenerator.GetBytes(PasswordHelper.KeySize);
+    //     var hash = Rfc2898DeriveBytes.Pbkdf2(Encoding.UTF8.GetBytes(password), salt, PasswordHelper.Iterations, PasswordHelper.HashAlgorithm, PasswordHelper.KeySize);
+    //     return Convert.ToHexString(hash);
+    // }
+
+    // public static bool HashesMatch(string password, string userSalt, string userHash)
+    // {
+    //     var hash = Rfc2898DeriveBytes.Pbkdf2(Encoding.UTF8.GetBytes(password), PasswordHelper.SaltConvertHexString2Bytes(userSalt), PasswordHelper.Iterations, PasswordHelper.HashAlgorithm, PasswordHelper.KeySize);
+    //     if (Convert.ToHexString(hash) == userHash){
+    //         return true;
+    //     }
+    //     return false;
+    // }
+
     public static string HashPassword(string password, out byte[] salt)
     {
-        salt = RandomNumberGenerator.GetBytes(PasswordHelper.KeySize);
-        var hash = Rfc2898DeriveBytes.Pbkdf2(Encoding.UTF8.GetBytes(password), salt, PasswordHelper.Iterations, PasswordHelper.HashAlgorithm, PasswordHelper.KeySize);
-        return Convert.ToHexString(hash);
+        // Generate salt
+        salt = RandomNumberGenerator.GetBytes(16);
+        
+        // Create SHA512 hash
+        var hash = HashFactory.Crypto.CreateSHA1();
+        
+        // Combine password and salt
+        string combinedString = password + Convert.ToHexString(salt);
+        
+        // Compute hash
+        var result = hash.ComputeString(combinedString, Encoding.UTF8);
+        
+        return result.ToString();
     }
 
     public static bool HashesMatch(string password, string userSalt, string userHash)
     {
-        var hash = Rfc2898DeriveBytes.Pbkdf2(Encoding.UTF8.GetBytes(password), PasswordHelper.SaltConvertHexString2Bytes(userSalt), PasswordHelper.Iterations, PasswordHelper.HashAlgorithm, PasswordHelper.KeySize);
-        if (Convert.ToHexString(hash) == userHash){
-            return true;
-        }
-        return false;
+        // Create SHA512 hash
+        var hash = HashFactory.Crypto.CreateSHA1();
+        
+        // Combine password and salt
+        string combinedString = password + userSalt;
+        
+        // Compute hash
+        var result = hash.ComputeString(combinedString, Encoding.UTF8);
+        
+        return result.ToString() == userHash;
     }
+
     public static byte[] SaltConvertHexString2Bytes(string salt)
     {
         return Convert.FromHexString(salt);
