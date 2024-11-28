@@ -15,7 +15,16 @@ if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Development
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder =>
+        {
+            builder.WithOrigins("http://119.148.101.115:3000")
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+        });
+});
 
 // apply the default auth schemes and tell jwt what we want to authenticate
 builder.Services.AddAuthentication(x => 
@@ -57,7 +66,7 @@ var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 
-
+app.UseCors("AllowSpecificOrigin");
 
 
 app.UseAuthentication();
