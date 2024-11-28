@@ -7,7 +7,9 @@ namespace UserService.RequestHelpers;
 
 public class PasswordHelper
 {
-    private static readonly HashAlgorithmName HashAlgorithm =  HashAlgorithmName.SHA3_512;
+    // private static readonly HashAlgorithmName HashAlgorithm =  HashAlgorithmName.SHA3_512;
+    private static readonly HashAlgorithmName HashAlgorithm =  HashAlgorithmName.SHA256;
+
     private static readonly int Iterations = 3500;
     private static readonly int KeySize = 256;
     public static string HashPassword(string password, out byte[] salt)
