@@ -9,7 +9,6 @@ namespace UserService.RequestHelpers;
 public class PasswordHelper
 {
     // private static readonly HashAlgorithmName HashAlgorithm =  HashAlgorithmName.SHA3_512;
-    private static readonly HashAlgorithmName HashAlgorithm =  HashAlgorithmName.SHA256;
 
     private static readonly int Iterations = 3500;
     private static readonly int KeySize = 256;
@@ -31,16 +30,16 @@ public class PasswordHelper
 
     public static string HashPassword(string password, out byte[] salt)
     {
-        // Generate salt
+        
         salt = RandomNumberGenerator.GetBytes(16);
         
-        // Create SHA512 hash
+        
         var hash = HashFactory.Crypto.CreateSHA1();
         
-        // Combine password and salt
+        
         string combinedString = password + Convert.ToHexString(salt);
         
-        // Compute hash
+        
         var result = hash.ComputeString(combinedString, Encoding.UTF8);
         
         return result.ToString();
@@ -48,13 +47,13 @@ public class PasswordHelper
 
     public static bool HashesMatch(string password, string userSalt, string userHash)
     {
-        // Create SHA512 hash
+        
         var hash = HashFactory.Crypto.CreateSHA1();
         
-        // Combine password and salt
+        
         string combinedString = password + userSalt;
         
-        // Compute hash
+        
         var result = hash.ComputeString(combinedString, Encoding.UTF8);
         
         return result.ToString() == userHash;
