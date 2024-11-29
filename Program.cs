@@ -20,7 +20,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowSpecificOrigin",
         builder =>
         {
-            builder.WithOrigins("http://119.148.101.115:3000")
+            builder.WithOrigins("https://theapp-frontend.vercel.app")
                 .AllowAnyMethod()
                 .AllowAnyHeader();
         });
